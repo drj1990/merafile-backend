@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/drj1990/merafile-backend/issues"
   },
-  "homepage": "https://github.com/drj1990/merafile-backend#readme"
+  "homepage": "https://github.com/drj1990/merafile-backend#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^14.4.0"
+  }
 }
