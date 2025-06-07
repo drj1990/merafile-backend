@@ -1,0 +1,41 @@
+service: merafile-backend
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    BUCKET_NAME: merafile-upload
+
+functions:
+  upload:
+    handler: functions/handler.upload
+    events:
+      - http:
+          path: upload
+          method: post
+          cors: true
+          private: false
+
+  generateDownloadUrl:
+    handler: functions/handler.generateDownloadUrl
+    events:
+      - http:
+          path: download
+          method: get
+          cors: true
+
+plugins:
+  - serverless-offline
+
+resources:
+  Resources:
+    UploadsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: merafile-upload
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ["*"]
+              AllowedMethods: ["GET", "PUT"]
+              AllowedOrigins: ["*"]

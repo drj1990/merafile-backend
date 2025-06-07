@@ -1,0 +1,115 @@
+{
+  "I:\\liveProject\\merafile-backend\\serverless.yml": {
+    "versionFramework": "4.17.0",
+    "servicePath": "I:\\liveProject\\merafile-backend\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "merafile-backend",
+      "frameworkVersion": ">=3.0.0",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-east-1",
+        "environment": {
+          "BUCKET_NAME": "merafile-uploads"
+        },
+        "stage": "dev"
+      },
+      "functions": {
+        "upload": {
+          "handler": "functions/handler.upload",
+          "events": [
+            {
+              "http": {
+                "path": "upload",
+                "method": "post",
+                "cors": true,
+                "private": false
+              }
+            }
+          ]
+        },
+        "generateDownloadUrl": {
+          "handler": "functions/handler.generateDownloadUrl",
+          "events": [
+            {
+              "http": {
+                "path": "download",
+                "method": "get",
+                "cors": true
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ],
+      "resources": {
+        "Resources": {
+          "UploadsBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketName": "merafile-uploads",
+              "CorsConfiguration": {
+                "CorsRules": [
+                  {
+                    "AllowedHeaders": [
+                      "*"
+                    ],
+                    "AllowedMethods": [
+                      "GET",
+                      "PUT"
+                    ],
+                    "AllowedOrigins": [
+                      "*"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "region": "us-east-1",
+      "environment": {
+        "BUCKET_NAME": "merafile-uploads"
+      },
+      "stage": "dev"
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "error": {
+      "message": "The Serverless version (4.17.0) does not satisfy the \"frameworkVersion\" (>=3.0.0) in serverless",
+      "stack": "ServerlessError2: The Serverless version (4.17.0) does not satisfy the \"frameworkVersion\" (>=3.0.0) in serverless\n    at Service.loadServiceFileParam (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1378:9199)\n    at Service.load (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1378:6841)\n    at Serverless.init (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1384:9813)\n    at runFramework (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1411:856)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async TraditionalRunner.run (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1407:28336)\n    at async route (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1582:2878)\n    at async Object.run (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1583:3661)\n    at async run2 (file:///C:/Users/dhira/.serverless/releases/4.17.0/package/dist/sf-core.js:1583:4815)",
+      "code": "FRAMEWORK_VERSION_MISMATCH"
+    },
+    "serviceRawFile": "service: merafile-backend\r\nframeworkVersion: \">=3.0.0\"\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-1\r\n  environment:\r\n    BUCKET_NAME: merafile-uploads\r\n\r\nfunctions:\r\n  upload:\r\n    handler: functions/handler.upload\r\n    events:\r\n      - http:\r\n          path: upload\r\n          method: post\r\n          cors: true\r\n          private: false\r\n\r\n  generateDownloadUrl:\r\n    handler: functions/handler.generateDownloadUrl\r\n    events:\r\n      - http:\r\n          path: download\r\n          method: get\r\n          cors: true\r\n\r\nplugins:\r\n  - serverless-offline\r\n\r\nresources:\r\n  Resources:\r\n    UploadsBucket:\r\n      Type: AWS::S3::Bucket\r\n      Properties:\r\n        BucketName: merafile-uploads\r\n        CorsConfiguration:\r\n          CorsRules:\r\n            - AllowedHeaders: [\"*\"]\r\n              AllowedMethods: [\"GET\", \"PUT\"]\r\n              AllowedOrigins: [\"*\"]\r\n",
+    "command": [
+      "offline",
+      "start"
+    ],
+    "options": {},
+    "orgId": "c1e46b6d-0ead-497c-93c8-f8b9e5e1d776",
+    "orgName": "awsserver",
+    "userId": "c5ZTdPhrR3F4QBm2Jy",
+    "userName": "awsserver",
+    "serviceProviderAwsAccountId": "738140883213",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
