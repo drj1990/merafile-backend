@@ -4,8 +4,16 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
+
   environment:
-    BUCKET_NAME: merafile-upload
+    BUCKET_NAME: mera-upload-dev
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+      Resource: arn:aws:s3:::mera-upload-dev/*
 
 functions:
   upload:
@@ -15,7 +23,6 @@ functions:
           path: upload
           method: post
           cors: true
-          private: false
 
   generateDownloadUrl:
     handler: functions/handler.generateDownloadUrl
@@ -33,7 +40,7 @@ resources:
     UploadsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: merafile-upload
+        BucketName: mera-upload-dev
         CorsConfiguration:
           CorsRules:
             - AllowedHeaders: ["*"]
