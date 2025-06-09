@@ -7,6 +7,7 @@ provider:
 
   environment:
     BUCKET_NAME: mera-upload-dev
+    SHORT_LINKS_TABLE: short_links
 
   iamRoleStatements:
     - Effect: Allow
@@ -23,6 +24,7 @@ functions:
           path: upload
           method: post
           cors: true
+          timeout: 30 # seconds, adjust higher if needed
 
   generateDownloadUrl:
     handler: functions/handler.generateDownloadUrl
@@ -30,6 +32,26 @@ functions:
       - http:
           path: download
           method: get
+          cors: true
+
+  updateUploadStatus:
+    handler: functions/handler.updateUploadStatus
+    events:
+      - http:
+          path: updateUploadStatus
+          method: post
+          cors: true
+
+  viewFile:
+    handler: functions/handler.viewFile
+    events:
+      - http:
+          path: viewFile
+          method: get
+          cors: true
+      - http:
+          path: viewFile
+          method: options
           cors: true
 
 plugins:
