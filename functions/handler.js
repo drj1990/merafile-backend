@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*", // Change "*" to your frontend domain if needed
-  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Headers": "x-api-key,Content-Type",
   "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
 };
 
